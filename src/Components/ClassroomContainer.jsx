@@ -7,6 +7,8 @@ export default function ClassroomContainer() {
   const { getClassMap, error } = useClassroom();
   const [classMap, setClassMap] = useState([]);
 
+// TODO: See https://chat.openai.com/share/d8025e23-fed7-42be-b053-69b15eb4b991
+  
   useEffect(() => {
     (async () => {
       const temp = await getClassMap("UA1350");

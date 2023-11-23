@@ -1,5 +1,7 @@
 import { MdEventSeat } from "react-icons/md";
 
+// TODO: See issue https://github.com/saadeghi/daisyui/issues/388
+
 export default function SeatComponent({ seatInfo }) {
   return (
     <>

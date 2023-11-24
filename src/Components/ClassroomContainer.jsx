@@ -7,14 +7,20 @@ export default function ClassroomContainer() {
   const { getClassMap, error } = useClassroom();
   const [classMap, setClassMap] = useState([]);
 
-// TODO: See https://chat.openai.com/share/d8025e23-fed7-42be-b053-69b15eb4b991
+const updateMap = async () => {
+  const temp = await getClassMap("UA1350");
+  temp.response.map.shift();
+  setClassMap(temp.response.map);
+};
   
   useEffect(() => {
-    (async () => {
-      const temp = await getClassMap("UA1350");
-      temp.response.map.shift();
-      setClassMap(temp.response.map);
-    })();
+    const interval = setInterval(()=>{
+      updateMap()
+    }, 10000);
+
+    return () =>{
+      clearInterval(interval);
+    } 
   }, []);
 
   return (
@@ -29,8 +35,8 @@ export default function ClassroomContainer() {
           <div className="card  bg-base-100 shadow-xl w-full">
             <div className="card-body">
               <div className="grid grid-cols-5 gap-4">
-                {!classMap
-                  ? "Classroom not found"
+                {classMap == []
+                  ? "Loading..."
                   : classMap.map((seat, index) => (
                       <SeatComponent key={index} seatInfo={seat} />
                     ))}

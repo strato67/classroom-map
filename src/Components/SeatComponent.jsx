@@ -1,21 +1,19 @@
-import { MdEventSeat } from "react-icons/md";
-
-// TODO: See issue https://github.com/saadeghi/daisyui/issues/388
+import { FaSquare } from "react-icons/fa6";
 
 export default function SeatComponent({ seatInfo }) {
   return (
     <>
       <div
-        className="lg:tooltip"
+        className="md:tooltip before:whitespace-pre before:content-[attr(data-tip)]"
         data-tip={
           seatInfo == "none"
             ? `Empty Seat`
-            : `Student Name: ${seatInfo.fullName} Preferred Name: ${seatInfo.prefName} \n Pronouns: ${seatInfo.pronouns}`
+            : `Student Name: ${seatInfo.fullName} \nPreferred Name: ${seatInfo.prefName} \nPronouns: ${seatInfo.pronouns}`
         }
       >
         <div className="avatar">
           <div className="w-24 rounded text-center">
-            <MdEventSeat size={96} color={seatInfo == "none" ? `` : `green`} />
+            <FaSquare size={96} color={seatInfo == "none" ? `gray` : `#8781AD`} />
           </div>
         </div>
       </div>
